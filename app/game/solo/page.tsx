@@ -38,8 +38,8 @@ function SoloGameContent() {
   const [questionIndex, setQuestionIndex] = useState(0)
   const [score, setScore] = useState(0)
   const [correctAnswers, setCorrectAnswers] = useState(0)
-  const [attacks, setAttacks] = useState<{ blur?: boolean; reverse?: boolean; shake?: boolean; fake?: string }>({})
-  const [showResult, setShowResult] = useState(false)
+  const [attacks, setAttacks] = useState<{ blur?: boolean; reverse?: boolean; shake?: boolean; fake?: string; freeze?: boolean;}>({})
+  const [showResult, setShowResult] = useState(false)     
 
   useEffect(() => {
     const createGame = async () => {
