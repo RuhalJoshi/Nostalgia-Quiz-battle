@@ -1,5 +1,7 @@
 'use client'
 
+export const dynamic = 'force-dynamic'
+
 import { useState, useEffect, Suspense } from 'react'
 import { useParams, useRouter, useSearchParams } from 'next/navigation'
 import AuthGuard from '@/components/AuthGuard'
@@ -30,6 +32,9 @@ type AttackState = {
   fake?: string
   freeze?: boolean
 }
+
+// Helper function to create attack state objects with proper typing
+const createAttackState = (state: AttackState): AttackState => state
 
 function BattleGameContent() {
   const params = useParams()
@@ -129,8 +134,7 @@ function BattleGameContent() {
         setTimeout(() => setAttacks({}), duration)
       } else if (attack.type === 'freeze') {
         // Freeze timer
-        const freezeAttack: AttackState = { freeze: true }
-        setAttacks(freezeAttack)
+        setAttacks(createAttackState({ freeze: true }))
         setTimeout(() => setAttacks({}), duration)
       } else if (attack.type === 'fake') {
         setAttacks({ fake: 'This is a fake option! 🎭' })

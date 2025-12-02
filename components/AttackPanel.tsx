@@ -101,7 +101,7 @@ export default function AttackPanel({ coins, onAttack, opponents, disabled = fal
                 {ATTACKS.map((attack) => {
                   const canAfford = coins >= attack.cost
                   const cooldownKey = `${attack.type}-${opponent.id}`
-                  const isOnCooldown = attackCooldowns[cooldownKey] && attackCooldowns[cooldownKey] > Date.now()
+                  const isOnCooldown = !!(attackCooldowns[cooldownKey] && attackCooldowns[cooldownKey] > Date.now())
                   const cooldownRemaining = isOnCooldown 
                     ? Math.ceil((attackCooldowns[cooldownKey] - Date.now()) / 1000)
                     : 0
@@ -110,7 +110,7 @@ export default function AttackPanel({ coins, onAttack, opponents, disabled = fal
                     <motion.button
                       key={attack.type}
                       onClick={() => handleAttack(attack.type, opponent.id)}
-                      disabled={disabled || !canAfford || isOnCooldown}
+                      disabled={!!(disabled || !canAfford || isOnCooldown)}
                       whileHover={canAfford && !isOnCooldown ? { scale: 1.05 } : {}}
                       whileTap={canAfford && !isOnCooldown ? { scale: 0.95 } : {}}
                       className={`relative p-3 rounded-lg border-2 transition-all text-sm overflow-hidden ${
