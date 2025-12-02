@@ -14,6 +14,7 @@ interface QuestionCardProps {
   reverse?: boolean
   shake?: boolean
   fakeOption?: string
+  freeze?: boolean
   correctAnswer?: number // Index of the correct answer (0-3)
   showResult?: boolean // Whether to show the result
 }
