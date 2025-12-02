@@ -129,7 +129,8 @@ function BattleGameContent() {
         setTimeout(() => setAttacks({}), duration)
       } else if (attack.type === 'freeze') {
         // Freeze timer
-        setAttacks({ freeze: true })
+        const freezeAttack: AttackState = { freeze: true }
+        setAttacks(freezeAttack)
         setTimeout(() => setAttacks({}), duration)
       } else if (attack.type === 'fake') {
         setAttacks({ fake: 'This is a fake option! 🎭' })
