@@ -23,6 +23,14 @@ const categoryMap: Record<string, QuestionCategory> = {
   'Mixed': 'cartoons', // Default, will use all categories
 }
 
+type AttackState = {
+  blur?: boolean
+  reverse?: boolean
+  shake?: boolean
+  fake?: string
+  freeze?: boolean
+}
+
 function BattleGameContent() {
   const params = useParams()
   const router = useRouter()
@@ -36,7 +44,7 @@ function BattleGameContent() {
   const [gameStarted, setGameStarted] = useState(false)
   const [currentQuestion, setCurrentQuestion] = useState<any>(null)
   const [players, setPlayers] = useState<any[]>([])
-  const [attacks, setAttacks] = useState<{ blur?: boolean; reverse?: boolean; shake?: boolean; fake?: string; freeze?: boolean }>({})
+  const [attacks, setAttacks] = useState<AttackState>({})
   const [coins, setCoins] = useState(profile?.coins || 0)
   const [currentAttack, setCurrentAttack] = useState<{ type: AttackType; attacker: string } | null>(null)
 
